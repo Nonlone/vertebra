@@ -1,10 +1,12 @@
 package per.nonlone.vertebra.product.repository;
 
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.stereotype.Repository;
+import per.nonlone.vertebra.common.AbstractRepository;
 import per.nonlone.vertebra.product.mapper.AttributeMapper;
 import per.nonlone.vertebra.product.po.AttributePo;
 
-public class AttributeRepository extends ServiceImpl<AttributeMapper, AttributePo> {
+@Repository
+public class AttributeRepository extends AbstractRepository<AttributeMapper, AttributePo> {
 
 
 }

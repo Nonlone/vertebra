@@ -1,10 +1,10 @@
-package per.nonlone.vertebra.product.factory;
+package per.nonlone.vertebra.product.common;
 
 
 /**
  * 最后执行器
  */
-public interface FinalExecutor {
+public interface PersistExecutor {
 
     /**
      * 添加任务

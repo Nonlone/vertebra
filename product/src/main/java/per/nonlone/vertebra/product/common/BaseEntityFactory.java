@@ -1,4 +1,4 @@
-package per.nonlone.vertebra.product.factory;
+package per.nonlone.vertebra.product.common;
 
 import per.nonlone.vertebra.common.BasePo;
 import per.nonlone.vertebra.common.BaseRequest;

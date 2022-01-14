@@ -1,10 +1,12 @@
 package per.nonlone.vertebra.product.po;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import per.nonlone.vertebra.common.BaseProductPo;
 import per.nonlone.vertebra.product.constant.AttributeProperty;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class VariantAttributeValuePo extends BaseProductPo {
 
     private Long id;

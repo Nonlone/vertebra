@@ -6,6 +6,7 @@ import java.util.Currency;
 
 import cn.hutool.core.math.Money;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import per.nonlone.vertebra.common.BaseProductPo;
 import per.nonlone.vertebra.product.constant.BrandType;
 import per.nonlone.vertebra.product.constant.DescriptionType;
@@ -15,6 +16,7 @@ import per.nonlone.vertebra.product.constant.ProductType;
  * 商品类
  */
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class ProductPo extends BaseProductPo {
 
     private Long id;

@@ -8,7 +8,7 @@ import lombok.Data;
  * 基础Po类，用于提供审计数据
  */
 @Data
-public abstract class BasePo {
+public abstract class  BasePo {
 
     private String createBy;
 

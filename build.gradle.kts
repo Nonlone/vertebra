@@ -36,6 +36,9 @@ subprojects {
     dependencies {
         api(platform(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES))
         implementation("cn.hutool:hutool-all:5.7.6")
+        implementation("com.google.guava:guava:30.1.1-jre")
+        // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+        implementation("org.apache.commons:commons-lang3:3.12.0")
         constraints {
             // MyBatisPlus ORM 框架增强
             implementation("com.baomidou:mybatis-plus-boot-starter:3.4.3")

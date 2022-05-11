@@ -8,6 +8,3 @@
  */
 
 rootProject.name = "vertebra"
-include("app")
-include("common")
-include("product")

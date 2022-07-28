@@ -1,4 +1,4 @@
-package per.nonlone.vertebra.ddd.domain;
+package per.nonlone.vertebra.ddd.operate;
 
 import java.util.function.Function;
 

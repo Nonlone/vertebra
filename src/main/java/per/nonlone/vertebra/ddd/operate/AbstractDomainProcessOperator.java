@@ -3,8 +3,8 @@ package per.nonlone.vertebra.ddd.operate;
 import java.util.function.Function;
 
 /**
- * 操作中包裹器
+ * 领域操作
  * @param <T>
  */
-public interface WrapOperational<T> extends Function<T,T> {
+public abstract class AbstractDomainProcessOperator<T> implements Function<T,T> {
 }

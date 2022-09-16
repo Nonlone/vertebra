@@ -1,9 +1,8 @@
 package per.nonlone.vertebra.ddd.domain;
 
-public interface Domanial {
+public interface Domanial<T> {
 
-    String getEntityId();
+    T getEntityId();
 
-    String getDomainType();
 
 }

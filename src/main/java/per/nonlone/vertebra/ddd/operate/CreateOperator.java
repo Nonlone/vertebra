@@ -24,15 +24,15 @@ public abstract class CreateOperator<T> extends AbstractDomainWriteOperator<T> {
         return this.apply(this.persistGuarantor,this::beforeCreate,this::doCreate,this::afterCreate, t);
     }
     
-    protected abstract T beforeCreate(T t);
-
+    protected T beforeCreate(T t) {
+        return t;
+    }
 
     protected abstract T doCreate(T t);
 
 
-    protected abstract T afterCreate(T t);
-
-
-    // protected abstract Function<T,T> persistGuarantee(Function<T,T> function);
+    protected  T afterCreate(T t){
+        return t;
+    }
 
 }

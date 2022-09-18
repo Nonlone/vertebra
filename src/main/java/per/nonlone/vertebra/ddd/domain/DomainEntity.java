@@ -1,6 +1,7 @@
 package per.nonlone.vertebra.ddd.domain;
 
 import java.util.function.Function;
+import com.google.common.base.Optional;
 import per.nonlone.vertebra.ddd.operate.CreateOperator;
 import per.nonlone.vertebra.ddd.operate.DeleteOperator;
 import per.nonlone.vertebra.ddd.operate.ReadAndFillOperator;
@@ -37,9 +38,10 @@ public abstract class DomainEntity<T,K extends DomainEntity<T,K>> implements Dom
         // 校验bean
         K k = (K)this;
         // 执行方法
-        Function<K,K> doFunction = getCreateOperator()::create;
-        doFunction = doFunction.compose(getSortOperator());
-        doFunction = doFunction.compose(getValidateOperator());
+        Function<K, K> doFunction = getCreateOperator()::create;
+        //前置处理
+        // doFunction = doFunction.compose(Optional.<Function<K, K>>of(getSortOperator()).or(Function.identity()));
+        // doFunction = doFunction.compose(Optional.<Function<K,K>>of(getValidateOperator()).or(Function.identity()));
         return doFunction.apply(k);
     }
 

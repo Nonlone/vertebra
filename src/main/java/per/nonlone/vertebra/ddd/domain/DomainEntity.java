@@ -30,6 +30,21 @@ public abstract class DomainEntity<T,K extends DomainEntity<T,K>> implements Dom
 
     protected abstract ReadAndFillOperator<K> getReadAndFillOperator();
 
+    protected CreateOperator<K> createOperator;
+
+    protected UpdateOpertaor<K> updateOpertaor;
+
+    protected UpdateSelectiveOperator<K> updateSelectiveOperator;
+
+    protected DeleteOperator<K> deleteOperator;
+
+    protected ValidateOperator<K> validateOperator;
+
+    protected SortOperator<K> sortOperator;
+
+    protected ReadAndFillOperator<K> readAndFillOperator;
+
+
     /**
      * 领域创建动作
      * @return

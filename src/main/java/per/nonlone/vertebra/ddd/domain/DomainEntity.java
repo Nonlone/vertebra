@@ -1,7 +1,9 @@
 package per.nonlone.vertebra.ddd.domain;
 
+import java.util.Objects;
+import java.util.Optional;
 import java.util.function.Function;
-import com.google.common.base.Optional;
+import per.nonlone.vertebra.ddd.exception.NullOperatorException;
 import per.nonlone.vertebra.ddd.operate.CreateOperator;
 import per.nonlone.vertebra.ddd.operate.DeleteOperator;
 import per.nonlone.vertebra.ddd.operate.ReadAndFillOperator;
@@ -15,20 +17,6 @@ import per.nonlone.vertebra.ddd.operate.ValidateOperator;
  * @param <T>
  */
 public abstract class DomainEntity<T,K extends DomainEntity<T,K>> implements Domanial<T> {
-
-    protected abstract CreateOperator<K> getCreateOperator();
-
-    protected abstract UpdateOpertaor<K> getUpdateOpertaor();
-
-    protected abstract UpdateSelectiveOperator<K> getUpdateSelectiveOperator();
-
-    protected abstract DeleteOperator<K> getDeleteOperator();
-
-    protected abstract ValidateOperator<K> getValidateOperator();
-
-    protected abstract SortOperator<K> getSortOperator();
-
-    protected abstract ReadAndFillOperator<K> getReadAndFillOperator();
 
     protected CreateOperator<K> createOperator;
 
@@ -45,18 +33,34 @@ public abstract class DomainEntity<T,K extends DomainEntity<T,K>> implements Dom
     protected ReadAndFillOperator<K> readAndFillOperator;
 
 
+    
+    protected DomainEntity(
+            CreateOperator<K> createOperator,
+            UpdateOpertaor<K> updateOpertaor,
+            UpdateSelectiveOperator<K> updateSelectiveOperator, 
+            DeleteOperator<K> deleteOperator
+    ) {
+        this.createOperator = createOperator;
+        this.updateOpertaor = updateOpertaor;
+        this.updateSelectiveOperator = updateSelectiveOperator;
+        this.deleteOperator = deleteOperator;
+    }
+
     /**
      * 领域创建动作
      * @return
      */
     public K create(){
         // 校验bean
-        K k = (K)this;
+        K k = (K) this;
+        if(Objects.isNull(createOperator)){
+            throw new NullOperatorException("createOperator is null, class:" + getClass());
+        }
         // 执行方法
-        Function<K, K> doFunction = getCreateOperator()::create;
-        //前置处理
-        // doFunction = doFunction.compose(Optional.<Function<K, K>>of(getSortOperator()).or(Function.identity()));
-        // doFunction = doFunction.compose(Optional.<Function<K,K>>of(getValidateOperator()).or(Function.identity()));
+        Function<K, K> doFunction = createOperator::create;
+        //前置处理，栈方式处理，先入后出
+        doFunction = doFunction.compose(Optional.<Function<K, K>>ofNullable(sortOperator).orElse(Function.identity()));
+        doFunction = doFunction.compose(Optional.<Function<K,K>>ofNullable(validateOperator).orElse(Function.identity()));
         return doFunction.apply(k);
     }
 
